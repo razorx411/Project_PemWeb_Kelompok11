@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validasi Password</title>
+    <link rel="stylesheet" type="text/css" href="formlogin.css">
+</head>
+<body>
+    <form id="registrationForm" onsubmit="return validasiNama()">
+    <h2>Buat Profilmu! </h2>
+
+    <div class="form-group">
+    <label for="nama">Nama pengguna</label>
+    <span class="separator"></span>
+    <input type="text" id="nama" name="nama" required placeholder="contoh: Hafid">
+    </div>
+
+    <div class="form-group">
+    <label for="email">Email</label>
+    <span class="separator"></span>
+    <input type="email" id="email" name="email" required placeholder="contoh@gmail.com">
+    </div>
+
+    <div class="form-group">
+    <label for="password">Kata sandi</label>
+    <span class="separator"></span>
+    <div style="display:flex; align-items:center;">
+        <input type="password" id="password" name="password" required placeholder="Minimal 8 karakter">
+        <span id="eye" onclick="togglePassword()" style="cursor:pointer; margin-left:8px;">
+            <img src="Asset/hidden.png" alt="mata" style="width:20px; height:20px;">
+        </span>
+    </div>
+    </div>
+
+    <p id="notif" style="color:green; display:none;"></p>
+    <input type="submit" value="Buat Akun"> 
+
+</form>
+
+<script>
+function validasiNama() {
+    let inputNama = document.getElementById("nama").value;
+    let password = document.getElementById("password").value;
+
+    let pola = /^[a-zA-Z']+$/;
+
+    if (!pola.test(inputNama)) {
+        alert("Nama hanya boleh berisi huruf dan tanda petik satu (')");
+        return false;
+    }
+
+    if (password.length < 8) {
+        alert("Password harus minimal 8 karakter!");
+        return false;
+    }
+
+    // kalau semua valid
+    alert("Registrasi berhasil! 🎉");
+    return true; // form boleh submit
+}
+
+function togglePassword() {
+    const pw = document.getElementById("password");
+    const eye = document.getElementById("eye");
+
+    if (pw.type === "password") {
+        pw.type = "text";
+        eye.innerHTML = "<img src='Asset/view.png' alt='mata' style='width:18px; height:18px;'>";
+    } else {
+        pw.type = "password";
+        eye.innerHTML = "<img src='Asset/hidden.png' alt='mata' style='width:18px; height:18px;'>";
+    }
+}
+</script>
+
+</script>
+</body>
+</html>
