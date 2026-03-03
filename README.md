@@ -13,10 +13,10 @@
 Deskripsi Proyek : <br>
 Repositori ini diperuntukkan sebagai wadah pengumpulan dan dokumentasi tugas-tugas mata kuliah Pemrograman Website Kelompok 11. Seluruh kode sumber, laporan, dan aset pendukung dikelola secara terpusat untuk memudahkan kolaborasi dan evaluasi. <br>
 <br>
-Berikut adalah struktur tim beserta peran dan NPM masing-masing anggota: <br>
+Berikut adalah anggota tim beserta NPM : <br>
 <br>
-Dwiki Aulia Rahman 24082010153  <br>
-Zaki Wira Laksamana 24082010155 <br>
-Hafid Fathurohman	24082010165 <br>
+Dwiki Aulia Rahman (24082010153)  <br>
+Zaki Wira Laksamana (24082010155) <br>
+Hafid Fathurohman	(24082010165) <br>
 
 
