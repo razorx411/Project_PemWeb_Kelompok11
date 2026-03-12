@@ -4,20 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biodata Kelompok 11</title>
-</head>
-<body>
-    <header>
-        <h1>Profil Tim</h1>
-         <img src="Asset/kel11.jpeg" alt="Foto Tim">
+    <!-- Menggunakan Tailwind CSS via CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Beranda</a></li>
-                <li><a href="hafid.html">Hafid</a></li>
-                <li><a href="dwiki.html">Dwiki</a></li>
-                <li><a href="zaki.html">Zaki</a></li>
-            </ul>
-        </nav>
-    </header>
+  <link
+  href = "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    .cinzel{
+      font-family: 'Cinzel', serif;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased bg-[#e7d6ba]">
+
+  <header class="bg-[#b79152] shadow">
+    <div class="container mx-auto p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-[#573a0a] cinzel">AksaraLoka</h1>
+      <nav>
+        <ul class="flex space-x-4 cinzel">
+          <li>
+            <a href="index.html" class="text-gray-700 hover:text-gray-900">Beranda</a>
+          </li>
+          <li>
+            <a href="about.html" class="text-gray-700 hover:text-gray-900">Tentang</a>
+          </li>
+          <li>
+            <a href="portfolio.html" class="text-gray-700 hover:text-gray-900">Materi</a>
+          </li>
+          <li>
+            <a href="contact.html" class="text-gray-700 hover:text-gray-900">Kontak</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="container mx-auto mt-8">
+
+    <section class="bg-[#ffffe7] p-8 rounded shadow mt-8 ml-5 mr-5">
+      <h2 class="text-2xl font-bold mb-4 cinzel text-[#573a0a]">Tim Kami</h2>
+      <p class="text-[#895a10] mb-4">
+        Kami merupakan mahasiswa Program Studi Sistem Informasi, Fakultas Ilmu Komputer, UPN “Veteran” Jawa Timur
+      </p>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 ml-5 mr-5">
+
+      <div class="bg-[#ffffe7] p-4 rounded shadow text-center">
+        <img class="w-45 h-62 mx-auto mb-3 border-3 border-[#895a10] rounded" src="Asset/foto zaki.jpeg" alt="Foto Zaki">
+        <h3 class="text-xl font-semibold mb-2 cinzel text-[#573a0a]">Zaki Wira Laksamana</h3>
+        <p class="text-[#895a10] mb-3">
+          NPM: 24082010155
+        </p>
+        <button class="bg-[#afaf21] hover:bg-[#88881b] text-white py-2 px-4 rounded cinzel">
+            <a href="zaki.html">Selengkapnya</a>
+        </button>
+      </div>
+
+      <div class="bg-[#ffffe7] p-4 rounded shadow text-center">
+        <img class="w-45 h-62 mx-auto mb-3 border-3 border-[#895a10] rounded" src="Asset/foto hafid.jpeg" alt="Foto Hafid">
+        <h3 class="text-xl font-semibold mb-2 cinzel text-[#573a0a]">Hafid Fathurrohman</h3>
+        <p class="text-[#895a10] mb-3">
+          NPM: 24082010165
+        </p>
+        <button class="bg-[#afaf21] hover:bg-[#88881b] text-white py-2 px-4 rounded cinzel">
+          <a href="hafid.html">Selengkapnya</a>
+        </button>
+      </div>
+      
+      <div class="bg-[#ffffe7] p-4 rounded shadow text-center">
+        <img class="w-30 h-62 mx-auto mb-3 border-3 border-[#895a10] rounded" src="Asset/foto dwiki.jpeg" alt="Foto Hafid">
+        <h3 class="text-xl font-semibold mb-2 cinzel text-[#573a0a]">Dwiki Aulia Rahman</h3>
+        <p class="text-[#895a10] mb-3">
+          NPM: 24082010153
+        </p>
+        <button class="bg-[#afaf21] hover:bg-[#88881b] text-white py-2 px-4 rounded cinzel">
+          <a href="dwiki.html">Selengkapnya</a>
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="bg-[#b79152] shadow mt-8 py-5">
+    <div class="container mx-auto text-center text-white cinzel">
+      &copy; 2026 - AksaraLoka.
+    </div>
+  </footer>
 </body>
 </html>
