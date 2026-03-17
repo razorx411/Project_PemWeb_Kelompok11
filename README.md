@@ -1,7 +1,7 @@
 <p align="center"><b>-- PEMROGRAMAN WEBSITE KELOMPOK 11 --</b></p>
 
 <p align="center">
-  <img src="Project_PemWeb_Kelompok11/AksaraLoka/Asset/Logo/logo_upn.png" width="200"/>
+  <img src="logo_upn.png" width="200"/>
 </p>
 
 <p align="center"> Universitas Pembangunan Nasional “Veteran” Jawa Timur </p>
