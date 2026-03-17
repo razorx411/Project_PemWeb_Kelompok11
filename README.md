@@ -1,5 +1,3 @@
-# Project_PemMob_Kelompok7
-
 <p align="center"><b>-- PEMROGRAMAN WEBSITE KELOMPOK 11 --</b></p>
 
 <p align="center">
