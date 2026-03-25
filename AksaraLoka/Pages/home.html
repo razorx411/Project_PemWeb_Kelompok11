@@ -6,57 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AksaraLoka — Belajar Bahasa Jawa</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.config.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap;" rel="stylesheet"/>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { nunito: ['Cinzel', 'Serif'] },
-          colors: {
-            brand: {
-              DEFAULT: '#6b3f00',
-              light:   '#8a5200',
-              soft:    '#fff3e0',
-              border:  '#e8d0b0',
-            }
-          },
-          keyframes: {
-            fadeUp: {
-              '0%':   { opacity: '0', transform: 'translateY(16px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.5s ease forwards',
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body { font-family: 'Nunito', sans-serif; }
-
-    .xp-fill { width: 0; animation: grow 1.2s ease 0.4s forwards; }
-    @keyframes grow { to { width: 62%; } }
-
-    .card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(107,63,0,0.12); }
-
-    .btn {
-      border-bottom: 4px solid #4a2b00;
-      transition: all 0.1s ease;
-    }
-    .btn:hover  { filter: brightness(1.1); transform: translateY(1px); border-bottom-width: 3px; }
-    .btn:active { transform: translateY(3px); border-bottom-width: 1px; }
-
-    .btn-outline {
-      border: 2px solid #e8d0b0;
-      border-bottom: 4px solid #d4b896;
-      transition: all 0.1s ease;
-    }
-    .btn-outline:hover  { background: #fff3e0; transform: translateY(1px); border-bottom-width: 3px; }
-    .btn-outline:active { transform: translateY(3px); border-bottom-width: 1px; }
-  </style>
+  <link rel="stylesheet" href="home.css"/>
 </head>
 
 <body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-nunito">
@@ -359,7 +311,6 @@
   </footer>
   <!-- ==================== END FOOTER ==================== -->
 
+  <script src="./js/home.js"></script>
 </body>
 </html>
-
-
