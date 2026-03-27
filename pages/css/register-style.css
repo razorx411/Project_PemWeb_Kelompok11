@@ -1,0 +1,79 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+.bg-pattern {
+  background-color: #6b3f00;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(255,255,255,0.04) 18px),
+    repeating-linear-gradient(-45deg, transparent, transparent 18px, rgba(255,255,255,0.04) 18px);
+}
+
+/* Input */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e8d0b0;
+  border-radius: 0.875rem;
+  background: #fdf8f3;
+}
+
+.form-input:focus {
+  border-color: #aa6d11;
+  box-shadow: 0 0 0 3px rgba(170,109,17,0.14);
+  background: white;
+}
+
+/* Button */
+.btn-primary {
+  width: 100%;
+  background: #aa6d11;
+  color: white;
+  padding: 0.95rem;
+  border-radius: 0.875rem;
+  border-bottom: 4px solid #6b3f00;
+}
+
+/* Password */
+.password-wrapper {
+  position: relative;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Bars */
+.bar {
+  height: 4px;
+  flex: 1;
+  background: #e5e7eb;
+  border-radius: 999px;
+}
+
+/* Error */
+.error-text {
+  font-size: 12px;
+  color: red;
+}
+
+/* Notif */
+.notif {
+  background: #ecfdf5;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Floating */
+@keyframes floatChar {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.float-char {
+  animation: floatChar infinite;
+}
