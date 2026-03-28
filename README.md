@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="logo_upn.png" width="180"/>
+  <img src="assets/images/icons/icon_upn.png" width="180"/>
 </p>
 
 <p align="center">
