@@ -51,10 +51,8 @@ Proyek ini dikembangkan sebagai bagian dari tugas mata kuliah **Pemrograman Webs
 aksaraloka/
 │── assets/        # Gambar, icon, dll
 │── pages/         # Halaman utama
-│── js/            # Script JavaScript
-│── css/           # Styling (optional jika tidak pakai Tailwind CDN)
 │── config/        # Koneksi database
-│── index.php      # Halaman utama
+│── index.html     # Halaman utama
 ```
 
 ---
@@ -87,8 +85,7 @@ aksaraloka/
 ---
 
 ## 📸 Preview
-
-*(Tambahkan screenshot aplikasi di sini)*
+![Preview AksaraLoka](assets/images/img_ss.png)
 
 ---
 
