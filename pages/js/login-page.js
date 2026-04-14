@@ -1,6 +1,5 @@
 // ============================================
-//  Pages/js/login-page.js
-//  Terhubung ke api/login.php
+//  Pages/js/login-page.js (FIXED)
 // ============================================
 
 const form    = document.getElementById('loginForm');
@@ -10,14 +9,16 @@ const notifEl = document.getElementById('notif');
 const emailErr = document.getElementById('emailErr');
 const passErr  = document.getElementById('passErr');
 
-// ── Toggle password ────────────────────────────────────────────────────────
+// ── Toggle password ──────────────────────────
 document.getElementById('eyeBtn').addEventListener('click', () => {
   const isHidden = passEl.type === 'password';
   passEl.type = isHidden ? 'text' : 'password';
-  document.getElementById('eyeIcon').src = isHidden ? '../assets/icons/icon_view.png' : '../assets/icons/icon_hidden.png';
+  document.getElementById('eyeIcon').src = isHidden 
+    ? '../assets/icons/icon_view.png' 
+    : '../assets/icons/icon_hidden.png';
 });
 
-// ── Helper ─────────────────────────────────────────────────────────────────
+// ── Helper ───────────────────────────────────
 function showErr(el, msg) {
   el.textContent = msg;
   el.classList.remove('hidden');
@@ -34,7 +35,7 @@ function showNotif(msg, isSuccess = true) {
   notifEl.classList.remove('hidden');
 }
 
-// ── Validasi client ────────────────────────────────────────────────────────
+// ── Validasi client ──────────────────────────
 function validateClient() {
   clearErr(emailErr);
   clearErr(passErr);
@@ -52,7 +53,7 @@ function validateClient() {
   return valid;
 }
 
-// ── Submit ─────────────────────────────────────────────────────────────────
+// ── Submit ───────────────────────────────────
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   notifEl.classList.add('hidden');
@@ -64,24 +65,26 @@ form.addEventListener('submit', async (e) => {
   submitBtn.textContent = 'Memproses…';
 
   try {
-    const response = await fetch('../api/login.php', {
+    const response = await fetch('/Project_PemWeb_Kelompok11/api/login.php', {
       method: 'POST',
+      credentials: 'include', // 🔥 WAJIB biar session tersimpan
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email:    emailEl.value.trim(),
+        email: emailEl.value.trim(),
         password: passEl.value,
       }),
     });
 
     const data = await response.json();
 
+    console.log("LOGIN RESPONSE:", data); // DEBUG
+
     if (data.success) {
-      // Simpan info user di localStorage supaya bisa dipakai di home
+      // simpan untuk tampilan frontend (opsional)
       localStorage.setItem('user', JSON.stringify(data.user));
 
       showNotif(data.message, true);
 
-      // Redirect ke home setelah 1.5 detik
       setTimeout(() => {
         window.location.href = 'home-page.html';
       }, 1500);
@@ -94,7 +97,7 @@ form.addEventListener('submit', async (e) => {
     }
 
   } catch (err) {
-    console.error(err);
+    console.error("LOGIN ERROR:", err);
     showNotif('Tidak dapat terhubung ke server. Periksa koneksi kamu.', false);
   } finally {
     submitBtn.disabled = false;
