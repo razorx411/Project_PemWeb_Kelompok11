@@ -11,9 +11,7 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            nunito: ['Cinzel', 'serif'],
-          },
+          fontFamily: { nunito: ['Cinzel', 'serif'] },
           colors: {
             brown: {
               DEFAULT: '#aa6d11',
@@ -21,7 +19,6 @@
               darker:  '#7a4d09',
               theme:   '#6b3f00',
             },
-
           },
           keyframes: {
             floatUp: {
@@ -45,23 +42,19 @@
   </script>
 </head>
 
-<!-- Body buat ngebungkus halaman -->
 <body class="font-nunito bg-white text-gray-800 min-h-screen">
 
-  <!-- ==================== HEADER ==================== -->
+  <!-- HEADER -->
   <header class="w-full border-b border-gray-200 bg-white sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-      <!-- Logo — clickable -->
       <a href="index.html" class="text-[#6b3f00] font-extrabold text-2xl tracking-tight hover:opacity-80 transition-opacity">
         AksaraLoka
       </a>
 
-      <!-- Navbar right -->
       <nav class="flex items-center gap-3">
-
-        <!-- Login button — CLICKABLE -->
-        <a href="pages/home.html"
+        <!-- Masuk → login.html -->
+        <a href="pages/login.html"
             class="hidden md:block
                   text-brown-theme font-extrabold text-sm uppercase tracking-widest
                   px-5 py-2 rounded-xl bg-white
@@ -72,8 +65,8 @@
           Masuk
         </a>
 
-        <!-- Start CTA button — CLICKABLE -->
-        <a href="./pages/register-page.html"
+        <!-- Mulai → register-page.html -->
+        <a href="pages/register-page.html"
           class="text-white font-extrabold text-sm uppercase tracking-widest
                   px-5 py-2 rounded-xl
                   bg-[#aa6d11] border-b-4 border-[#99610e]
@@ -82,59 +75,43 @@
                   transition-all duration-100">
           Mulai
         </a>
-
       </nav>
     </div>
   </header>
-  <!-- ==================== END HEADER ==================== -->
 
-  <!-- ==================== MAIN ==================== -->
+  <!-- MAIN -->
   <main>
-
-    <!-- Hero Section -->
     <section class="min-h-[calc(100vh-64px)] flex items-center justify-center pt-0 px-6 py-12 bg-white">
       <div class="max-w-5xl w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
 
-
-        <!-- Hero Illustration -->
-        <div class="opacity-0 animate-float-up animate-bob flex-shrink-0 w-72 md:w-96 lg:w-[420px]">
-          <div class="relative w-full aspect-square">
-
-        <!-- Hero Illustration -->
+        <!-- Ilustrasi -->
         <div class="opacity-0 animate-float-up animate-bob flex-shrink-0 w-72 md:w-96 lg:w-[420px] flex items-center justify-center">
           <img src="assets/background/bg_awal.png" alt="Ilustrasi AksaraLoka"
-          class="w-full h-auto object-contain drop-shadow-xl"/>
+               class="w-full h-auto object-contain drop-shadow-xl"/>
         </div>
 
-        <!-- End Hero Illustration -->
-        </div>
-        </div>
-        <!-- End Hero Illustration -->
-
-        <!-- Hero Text + Buttons -->
+        <!-- Hero Text -->
         <div class="opacity-0 animate-float-up-text flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-sm w-full">
 
-          <!-- Headline — non-clickable -->
-          <h1 class="text-3xl md:text-4xl lg:text-[4 rem] font-black leading-tight text-gray-800 cursor-default select-none">
+          <h1 class="text-3xl md:text-4xl font-black leading-tight text-gray-800 cursor-default select-none">
             Ayo Mulai Perjalananmu Mengenal Aksara Nusantara!
           </h1>
 
-          <!-- CTA Buttons -->
           <div class="opacity-0 animate-float-up-btns w-full flex flex-col gap-3 pt-2">
 
-            <!-- Primary button — CLICKABLE -->
-            <a href="./pages/register-page.html"
+            <!-- Daftar → register -->
+            <a href="pages/register-page.html"
                 class="w-full text-center text-white font-extrabold text-base uppercase tracking-widest
                       py-4 rounded-2xl shadow-md
                       bg-[#aa6d11] border-b-4 border-[#99610e]
                       hover:bg-[#7a4d09] hover:translate-y-0.5 hover:border-b-2
                       active:translate-y-1 active:border-b-0
                       transition-all duration-100">
-              MULAI
+              DAFTAR SEKARANG
             </a>
 
-            <!-- Secondary button — CLICKABLE -->
-            <a href="pages/home.html"
+            <!-- Sudah punya akun → login -->
+            <a href="pages/login.html"
                 class="w-full text-center text-brown-theme font-extrabold text-base uppercase tracking-widest
                       py-4 rounded-2xl bg-white
                       border-2 border-b-4 border-gray-200
@@ -145,25 +122,16 @@
             </a>
 
           </div>
-          <!-- End CTA Buttons -->
-
         </div>
-        <!-- End Hero Text + Buttons -->
 
       </div>
     </section>
-    <!-- End Hero Section -->
-
   </main>
-  <!-- ==================== END MAIN ==================== -->
 
-  <!-- ==================== FOOTER ==================== -->
+  <!-- FOOTER -->
   <footer class="w-full bg-[#fdf8f0] border-t-2 border-[#e8d5b0] mt-16">
-
-    <!-- Top footer content -->
     <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
 
-      <!-- Brand column — non-clickable -->
       <div class="flex flex-col gap-3">
         <span class="text-[#aa6d11] font-extrabold text-xl tracking-tight cursor-default select-none">AksaraLoka</span>
         <p class="text-sm text-gray-500 leading-relaxed cursor-default select-none">
@@ -171,58 +139,36 @@
         </p>
       </div>
 
-      <!-- Team column — non-clickable -->
       <div class="flex flex-col gap-3">
-        <h3 class="text-[#aa6d11] font-extrabold text-sm uppercase tracking-widest cursor-default select-none">
-          Tim Pengembang
-        </h3>
+        <h3 class="text-[#aa6d11] font-extrabold text-sm uppercase tracking-widest cursor-default select-none">Tim Pengembang</h3>
         <ul class="flex flex-col gap-1">
           <li class="flex items-center gap-2 text-sm text-gray-600 cursor-default select-none">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>
-            Dwiki Aulia Rahman
+            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>Dwiki Aulia Rahman
           </li>
           <li class="flex items-center gap-2 text-sm text-gray-600 cursor-default select-none">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>
-            Zaki Wira Laksamana
+            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>Zaki Wira Laksamana
           </li>
           <li class="flex items-center gap-2 text-sm text-gray-600 cursor-default select-none">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>
-            Hafid Fathurrohman
+            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>Hafid Fathurrohman
           </li>
         </ul>
       </div>
 
-      <!-- Supervisor column — non-clickable -->
       <div class="flex flex-col gap-3">
-        <h3 class="text-[#aa6d11] font-extrabold text-sm uppercase tracking-widest cursor-default select-none">
-          Dosen Pembimbing
-        </h3>
-        <p class="text-sm text-gray-600 leading-relaxed cursor-default select-none">
-          Bu Reisa Permatasari, ST, M.Kom.
-        </p>
+        <h3 class="text-[#aa6d11] font-extrabold text-sm uppercase tracking-widest cursor-default select-none">Dosen Pembimbing</h3>
+        <p class="text-sm text-gray-600 leading-relaxed cursor-default select-none">Bu Reisa Permatasari, ST, M.Kom.</p>
         <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest mt-1 cursor-default select-none">
           Pemrograman Website &amp; Manajemen Proyek Sistem Informasi · 2026
         </p>
       </div>
 
     </div>
-    <!-- End top footer content -->
-
-    <!-- Bottom bar -->
     <div class="border-t border-[#e8d5b0] bg-[#f5ede0]">
       <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-
-        <!-- Copyright — non-clickable -->
-        <p class="text-xs text-gray-400 font-semibold cursor-default select-none">
-          &copy; 2026 AksaraLoka — Kelompok 11
-        </p>
-
+        <p class="text-xs text-gray-400 font-semibold cursor-default select-none">&copy; 2026 AksaraLoka — Kelompok 11</p>
       </div>
     </div>
-    <!-- End bottom bar -->
-
   </footer>
-  <!-- ==================== END FOOTER ==================== -->
 
 </body>
 </html>

@@ -1,296 +1,179 @@
-/**
- * register-page.js — AksaraLoka
- * Client-side validation & UX yang diperkuat.
- *
- * CATATAN KEAMANAN:
- * Validasi di sini hanya lapisan PERTAMA. Validasi sesungguhnya
- * HARUS dilakukan di server (backend). Jangan simpan data sensitif
- * di localStorage tanpa enkripsi di production.
- */
+// ============================================
+//  Pages/js/register-page.js
+//  Terhubung ke api/register.php
+// ============================================
 
-'use strict';
+// ── Elemen ────────────────────────────────────────────────────────────────
+const form     = document.getElementById('registrationForm');
+const namaEl   = document.getElementById('nama');
+const emailEl  = document.getElementById('email');
+const passEl   = document.getElementById('password');
+const confEl   = document.getElementById('confirmPassword');
+const notifEl  = document.getElementById('notif');
 
-/* ─── Konstanta ─────────────────────────────────────── */
+// Error paragraphs
+const namaErr  = document.getElementById('namaErr');
+const emailErr = document.getElementById('emailErr');
+const passErr  = document.getElementById('passErr');
+const confErr  = document.getElementById('confirmErr');
+
+// Password strength bars
+const bars = [
+  document.getElementById('bar1'),
+  document.getElementById('bar2'),
+  document.getElementById('bar3'),
+  document.getElementById('bar4'),
+];
+const strengthLabel = document.getElementById('strengthLabel');
+
+// ── Toggle password visibility ─────────────────────────────────────────────
+function setupEye(btnId, iconId, inputEl) {
+  document.getElementById(btnId).addEventListener('click', () => {
+    const isHidden = inputEl.type === 'password';
+    inputEl.type = isHidden ? 'text' : 'password';
+    document.getElementById(iconId).src = isHidden ? '../assets/icons/icon_view.png' : '../assets/icons/icon_hidden.png';
+  });
+}
+setupEye('eyeBtn',  'eyeIcon',  passEl);
+setupEye('eyeBtn2', 'eyeIcon2', confEl);
+
+// ── Password strength ──────────────────────────────────────────────────────
 const STRENGTH_CONFIG = [
-  { label: 'Sangat Lemah', color: '#ef4444', bars: 1 },
-  { label: 'Lemah',        color: '#f97316', bars: 2 },
-  { label: 'Sedang',       color: '#eab308', bars: 3 },
-  { label: 'Kuat',         color: '#22c55e', bars: 4 },
+  { label: 'Sangat Lemah', color: '#ef4444' },
+  { label: 'Lemah',        color: '#f97316' },
+  { label: 'Cukup',        color: '#eab308' },
+  { label: 'Kuat',         color: '#22c55e' },
 ];
 
-const RATE_LIMIT = {
-  maxAttempts: 5,
-  windowMs: 60_000, // 1 menit
-  attempts: [],
-};
-
-/* ─── Elemen DOM ─────────────────────────────────────── */
-const form        = document.getElementById('registrationForm');
-const namaInput   = document.getElementById('nama');
-const emailInput  = document.getElementById('email');
-const passInput   = document.getElementById('password');
-const confirmInput= document.getElementById('confirmPassword');
-const eyeBtn      = document.getElementById('eyeBtn');
-const eyeIcon     = document.getElementById('eyeIcon');
-const eyeBtn2     = document.getElementById('eyeBtn2');
-const eyeIcon2    = document.getElementById('eyeIcon2');
-const namaErr     = document.getElementById('namaErr');
-const passErr     = document.getElementById('passErr');
-const confirmErr  = document.getElementById('confirmErr');
-const strengthLabel = document.getElementById('strengthLabel');
-const notif       = document.getElementById('notif');
-const submitBtn   = document.querySelector('[type="submit"]');
-
-/* ─── Utilitas ───────────────────────────────────────── */
-
-/** Sanitize input — hapus karakter berbahaya */
-function sanitize(str) {
-  return str.replace(/[<>"'`&]/g, '').trim();
-}
-
-/** Validasi email lebih ketat */
-function isValidEmail(email) {
-  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email)
-    && email.length <= 254;
-}
-
-/** Hitung skor kekuatan password */
-function getPasswordScore(val) {
+function calcStrength(pwd) {
   let score = 0;
-  if (val.length >= 8)           score++;
-  if (val.length >= 12)          score++;
-  if (/[A-Z]/.test(val))         score++;
-  if (/[0-9]/.test(val))         score++;
-  if (/[^A-Za-z0-9]/.test(val))  score++;
-  // Normalisasi ke 0-3
-  return Math.min(Math.floor(score / 5 * 4), 3);
+  if (pwd.length >= 8)              score++;
+  if (/[A-Z]/.test(pwd))           score++;
+  if (/[0-9]/.test(pwd))           score++;
+  if (/[^A-Za-z0-9]/.test(pwd))   score++;
+  return score; // 0–4
 }
 
-/** Tampilkan / sembunyikan error */
-function setError(el, msg) {
-  if (!el) return;
-  if (msg) {
-    el.textContent = msg;
-    el.classList.remove('hidden');
-  } else {
-    el.classList.add('hidden');
-  }
-}
-
-/** Set state loading tombol submit */
-function setLoading(loading) {
-  if (loading) {
-    submitBtn.disabled = true;
-    submitBtn.dataset.original = submitBtn.textContent;
-    submitBtn.textContent = 'Memproses…';
-    submitBtn.style.opacity = '0.7';
-    submitBtn.style.cursor = 'not-allowed';
-  } else {
-    submitBtn.disabled = false;
-    submitBtn.textContent = submitBtn.dataset.original || 'Buat Akun';
-    submitBtn.style.opacity = '';
-    submitBtn.style.cursor = '';
-  }
-}
-
-/** Rate limiting sederhana (client-side, bukan pengganti server-side) */
-function isRateLimited() {
-  const now = Date.now();
-  RATE_LIMIT.attempts = RATE_LIMIT.attempts.filter(t => now - t < RATE_LIMIT.windowMs);
-  if (RATE_LIMIT.attempts.length >= RATE_LIMIT.maxAttempts) return true;
-  RATE_LIMIT.attempts.push(now);
-  return false;
-}
-
-/* ─── Toggle Password ────────────────────────────────── */
-function togglePassword(inputEl, iconEl) {
-  const isHidden = inputEl.type === 'password';
-  inputEl.type = isHidden ? 'text' : 'password';
-  iconEl.textContent = isHidden ? '👁️' : '🙈';
-}
-
-eyeBtn?.addEventListener('click', () => togglePassword(passInput, eyeIcon));
-eyeBtn2?.addEventListener('click', () => togglePassword(confirmInput, eyeIcon2));
-
-/* ─── Strength Meter ─────────────────────────────────── */
-passInput?.addEventListener('input', function () {
-  const val = this.value;
-  const bars = document.querySelectorAll('.bar');
-
-  if (!val) {
-    bars.forEach(b => { b.style.background = ''; });
-    setError(strengthLabel, null);
-    setError(passErr, null);
-    return;
-  }
-
-  const score  = getPasswordScore(val);
-  const config = STRENGTH_CONFIG[score];
+passEl.addEventListener('input', () => {
+  const score = calcStrength(passEl.value);
+  const filled = score === 0 && passEl.value.length === 0 ? 0 : Math.max(score, 1);
 
   bars.forEach((bar, i) => {
-    bar.style.background = i < config.bars ? config.color : '#e5e7eb';
-    bar.style.transition = 'background 0.3s';
+    bar.style.background = i < filled
+      ? STRENGTH_CONFIG[Math.min(score - 1, 3)]?.color ?? '#e5e7eb'
+      : '#e5e7eb';
   });
 
-  strengthLabel.classList.remove('hidden');
-  strengthLabel.textContent = `Kekuatan: ${config.label}`;
-  strengthLabel.style.color = config.color;
-
-  setError(passErr, val.length < 8 ? 'Minimal 8 karakter.' : null);
-
-  // Validasi ulang konfirmasi jika sudah diisi
-  if (confirmInput?.value) validateConfirm();
-});
-
-/* ─── Validasi Real-time ─────────────────────────────── */
-namaInput?.addEventListener('input', function () {
-  const val = sanitize(this.value);
-  const ok  = /^[a-zA-Z' ]{2,50}$/.test(val);
-  setError(namaErr, ok || !val ? null : 'Nama hanya boleh huruf (2-50 karakter).');
-});
-
-emailInput?.addEventListener('blur', function () {
-  const val = sanitize(this.value);
-  // Beri feedback visual langsung
-  if (val && !isValidEmail(val)) {
-    emailInput.style.borderColor = '#ef4444';
+  if (passEl.value.length > 0) {
+    strengthLabel.classList.remove('hidden');
+    strengthLabel.textContent = STRENGTH_CONFIG[Math.min(score - 1, 3)]?.label ?? '';
+    strengthLabel.style.color = STRENGTH_CONFIG[Math.min(score - 1, 3)]?.color ?? '';
   } else {
-    emailInput.style.borderColor = '';
+    strengthLabel.classList.add('hidden');
   }
 });
 
-function validateConfirm() {
-  const match = passInput.value === confirmInput.value;
-  setError(confirmErr, match ? null : 'Kata sandi tidak cocok.');
-  return match;
+// ── Helper: tampil / sembunyikan error ─────────────────────────────────────
+function showErr(el, msg) {
+  el.textContent = msg;
+  el.classList.remove('hidden');
+}
+function clearErr(el) {
+  el.textContent = '';
+  el.classList.add('hidden');
+}
+function clearAllErrors() {
+  [namaErr, emailErr, passErr, confErr].forEach(clearErr);
 }
 
-confirmInput?.addEventListener('input', validateConfirm);
+// ── Helper: notifikasi ────────────────────────────────────────────────────
+function showNotif(msg, isSuccess = true) {
+  notifEl.textContent = msg;
+  notifEl.className = 'notif ' + (isSuccess
+    ? 'bg-green-50 text-green-700 border border-green-200'
+    : 'bg-red-50 text-red-700 border border-red-200');
+  notifEl.classList.remove('hidden');
+  notifEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 
-/* ─── Submit Handler ─────────────────────────────────── */
-form?.addEventListener('submit', async function (e) {
+// ── Validasi sisi client ───────────────────────────────────────────────────
+function validateClient() {
+  clearAllErrors();
+  let valid = true;
+
+  if (!namaEl.value.trim()) {
+    showErr(namaErr, 'Nama pengguna wajib diisi.');
+    valid = false;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+    showErr(emailErr, 'Format email tidak valid.');
+    valid = false;
+  }
+  if (passEl.value.length < 8) {
+    showErr(passErr, 'Kata sandi minimal 8 karakter.');
+    valid = false;
+  }
+  if (passEl.value !== confEl.value) {
+    showErr(confErr, 'Konfirmasi kata sandi tidak cocok.');
+    valid = false;
+  }
+
+  return valid;
+}
+
+// ── Submit ─────────────────────────────────────────────────────────────────
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
+  notifEl.classList.add('hidden');
 
-  // Rate limiting
-  if (isRateLimited()) {
-    showNotif('⚠️ Terlalu banyak percobaan. Tunggu 1 menit.', 'error');
-    return;
-  }
+  if (!validateClient()) return;
 
-  // Ambil & sanitasi nilai
-  const nama     = sanitize(namaInput.value);
-  const email    = sanitize(emailInput.value.toLowerCase());
-  const password = passInput.value; // password jangan di-sanitasi agar karakter khusus boleh
-  const confirm  = confirmInput?.value;
-
-  // ── Validasi ──────────────────────────────────────────
-  let hasError = false;
-
-  if (!/^[a-zA-Z' ]{2,50}$/.test(nama)) {
-    setError(namaErr, 'Nama hanya boleh huruf (2-50 karakter).');
-    namaInput.focus();
-    hasError = true;
-  }
-
-  if (!isValidEmail(email)) {
-    emailInput.style.borderColor = '#ef4444';
-    emailInput.focus();
-    hasError = true;
-  }
-
-  if (password.length < 8) {
-    setError(passErr, 'Minimal 8 karakter.');
-    if (!hasError) passInput.focus();
-    hasError = true;
-  }
-
-  if (confirm !== undefined && password !== confirm) {
-    setError(confirmErr, 'Kata sandi tidak cocok.');
-    hasError = true;
-  }
-
-  if (getPasswordScore(password) < 1) {
-    setError(passErr, 'Password terlalu lemah. Tambah huruf besar, angka, atau simbol.');
-    hasError = true;
-  }
-
-  if (hasError) return;
-
-  // ── Kirim ke server / simulasi ────────────────────────
-  setLoading(true);
+  const submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Memproses…';
 
   try {
-    await submitRegistration({ nama, email, password });
-    showNotif('🎉 Registrasi berhasil! Mengalihkan…', 'success');
-    form.reset();
-    document.querySelectorAll('.bar').forEach(b => b.style.background = '');
-    setError(strengthLabel, null);
+    const response = await fetch('../api/register.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nama:            namaEl.value.trim(),
+        email:           emailEl.value.trim(),
+        password:        passEl.value,
+        confirmPassword: confEl.value,
+      }),
+    });
 
-    setTimeout(() => {
-      window.location.href = 'home.html';
-    }, 2000);
+    const data = await response.json();
+
+    if (data.success) {
+      // ✅ Berhasil
+      showNotif(data.message, true);
+      form.reset();
+      bars.forEach(b => b.style.background = '#e5e7eb');
+      strengthLabel.classList.add('hidden');
+
+      // Redirect ke halaman login setelah 2 detik
+      setTimeout(() => {
+        window.location.href = 'home-page.html';
+      }, 2000);
+
+    } else if (data.errors) {
+      // ❌ Error validasi dari server
+      if (data.errors.nama)            showErr(namaErr,  data.errors.nama);
+      if (data.errors.email)           showErr(emailErr, data.errors.email);
+      if (data.errors.password)        showErr(passErr,  data.errors.password);
+      if (data.errors.confirmPassword) showErr(confErr,  data.errors.confirmPassword);
+
+    } else {
+      showNotif(data.message || 'Terjadi kesalahan. Coba lagi.', false);
+    }
 
   } catch (err) {
-    showNotif(`❌ ${err.message}`, 'error');
+    console.error(err);
+    showNotif('Tidak dapat terhubung ke server. Periksa koneksi kamu.', false);
   } finally {
-    setLoading(false);
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Buat Akun';
   }
 });
-
-/* ─── Submit ke Server ───────────────────────────────── */
-/**
- * Ganti fungsi ini dengan fetch() ke API backend-mu.
- *
- * Contoh integrasi real (uncomment jika pakai backend):
- *
- * async function submitRegistration(data) {
- *   const res = await fetch('/api/register', {
- *     method: 'POST',
- *     headers: { 'Content-Type': 'application/json' },
- *     body: JSON.stringify(data),
- *   });
- *   if (!res.ok) {
- *     const json = await res.json();
- *     throw new Error(json.message || 'Registrasi gagal.');
- *   }
- *   return res.json();
- * }
- *
- * Untuk kirim email verifikasi, gunakan:
- * - Firebase Auth: firebase.auth().createUserWithEmailAndPassword(email, password)
- *   lalu user.sendEmailVerification()
- * - Supabase: supabase.auth.signUp({ email, password })
- *   (otomatis kirim email konfirmasi)
- * - Backend custom: nodemailer / SendGrid / Mailgun dari server
- */
-async function submitRegistration(data) {
-  // SIMULASI — hapus ini dan ganti dengan fetch() ke backend
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // Simulasi email sudah terdaftar
-      if (data.email === 'test@test.com') {
-        reject(new Error('Email sudah terdaftar.'));
-      } else {
-        console.log('Data registrasi (simulasi):', {
-          nama: data.nama,
-          email: data.email,
-          // JANGAN pernah log password di production!
-        });
-        resolve({ success: true });
-      }
-    }, 1200);
-  });
-}
-
-/* ─── Notifikasi ─────────────────────────────────────── */
-function showNotif(msg, type = 'success') {
-  notif.textContent = msg;
-  notif.classList.remove('hidden');
-  notif.style.background = type === 'success' ? '#ecfdf5' : '#fef2f2';
-  notif.style.color       = type === 'success' ? '#166534' : '#991b1b';
-  notif.style.border      = `1px solid ${type === 'success' ? '#bbf7d0' : '#fecaca'}`;
-
-  if (type !== 'error') {
-    setTimeout(() => notif.classList.add('hidden'), 4000);
-  }
-}

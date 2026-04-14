@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AksaraLoka</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/home.js" defer></script>
+
+  <!-- Sistem multi-bahasa — wajib dimuat sebelum konten tampil -->
+  <script src="js/i18n.js" defer></script>
+
+  <link rel="stylesheet" href="css/home-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+
+<body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-nunito">
+
+  <!-- =====================================================
+      NAVBAR
+      ===================================================== -->
+  <nav class="bg-white border-b border-brand-border sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+
+      <a href="../index.html" class="font-black text-brand text-lg">AksaraLoka</a>
+
+      <!-- Menu — setiap link pakai data-i18n untuk terjemahan -->
+      <div class="hidden md:flex items-center gap-1 text-sm font-bold">
+        <a href="home.html" class="px-3 py-1.5 rounded-lg bg-brand-soft text-brand"     data-i18n="nav_home">Beranda</a>
+        <a href="#"         class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50" data-i18n="nav_courses">Kursus</a>
+        <a href="#"         class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50" data-i18n="nav_practice">Latihan</a>
+        <a href="#"         class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50" data-i18n="nav_leaderboard">Peringkat</a>
+        <a href="#"         class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50" data-i18n="nav_community">Komunitas</a>
+      </div>
+
+      <!-- Kanan: streak, notif, avatar -->
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex items-center gap-1 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-full text-xs font-bold text-orange-500">
+          🔥 12
+        </div>
+        <button class="relative w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100">
+          <span>🔔</span>
+          <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+        </button>
+        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white text-xs font-black">H</div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <div class="max-w-5xl mx-auto px-5 py-8 space-y-8">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+    <section class="bg-brand rounded-2xl p-6 md:p-8 text-white overflow-hidden">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="space-y-4 flex-1">
+
+          <!-- Sambutan -->
+          <div>
+            <p class="text-white/60 text-xs font-bold uppercase tracking-widest" data-i18n="hero_greeting">Selamat Pagi</p>
+            <h1 class="text-2xl md:text-3xl font-black mt-0.5"                   data-i18n="hero_welcome">Selamat Datang Kembali, Hafid!</h1>
+            <p class="text-white/70 text-sm font-semibold mt-1"                   data-i18n="hero_tagline">Semangat Belajar Bahasa Daerah!</p>
+          </div>
+
+          <!-- Statistik: streak / level / XP -->
+          <div class="flex flex-wrap gap-3">
+            <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
+              <img src="../assets/icons/icon_fire.png" alt="Streak" width="20" height="20">
+              <span data-i18n="hero_streak">12 Hari Berturut</span>
+            </div>
+            <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
+              <img src="../assets/icons/icon_favourites.png" alt="Level" width="20" height="20">
+              <!-- Diisi home.js -->
+              <span id="level-badge">Level 5</span>
+            </div>
+            <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
+              <img src="../assets/icons/icon_flash.png" alt="XP" width="20" height="20">
+              <!-- Diisi home.js -->
+              <span id="xp-text">840 XP</span>
+            </div>
+          </div>
+
+          <!-- Progress bar XP — lebar dianimasikan oleh home.js -->
+          <div class="max-w-xs space-y-1">
+            <div class="flex justify-between text-xs font-bold text-white/60">
+              <span id="xp-title" data-i18n="hero_xp_title">XP menuju Level 2</span>
+              <span id="xp-label">840 / 1,200</span>
+            </div>
+            <div class="w-full bg-white/20 rounded-full h-2.5 overflow-hidden">
+              <div id="xp-bar" class="h-full rounded-full bg-yellow-400"
+                   style="width:0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);">
+              </div>
+            </div>
+          </div>
+
+          <a href="portfolio.html" class="btn inline-flex items-center gap-2 bg-white text-brand font-black text-sm px-6 py-2.5 rounded-xl shadow"
+             data-i18n="hero_cta">▶ Lanjut Belajar</a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         GRID: Lanjut Belajar + Tantangan Harian
+         ===================================================== -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Kartu: Lanjut Belajar -->
+      <div class="bg-white rounded-2xl p-5 border border-brand-border card space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="font-black text-gray-800" data-i18n="card_continue_title">Lanjut Belajar</h2>
+          <span class="text-xs bg-brand-soft text-brand font-bold px-2.5 py-1 rounded-full" data-i18n="card_continue_badge">Sedang Berjalan</span>
+        </div>
+
+        <div class="flex items-center gap-3 bg-brand-soft rounded-xl p-3 border border-brand-border">
+          <div>
+            <p class="font-black text-gray-800 text-sm" data-i18n="card_course_name">Bahasa Jawa Dasar</p>
+            <p class="text-xs text-gray-500 font-semibold" data-i18n="card_course_unit">Unit 2 · Aksara Jawa</p>
+          </div>
+        </div>
+
+        <!-- Progress pelajaran -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-xs font-bold text-gray-500">
+            <span data-i18n="card_progress_label">Progress</span>
+            <span class="text-brand">60%</span>
+          </div>
+          <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-brand rounded-full" style="width:60%"></div>
+          </div>
+          <p class="text-xs text-gray-400 font-semibold" data-i18n="card_progress_count">12 / 20 pelajaran selesai</p>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <!-- Indikator tingkat kesulitan (3/5 bar aktif) -->
+          <div class="flex items-center gap-1.5 text-xs font-bold text-gray-500">
+            <span data-i18n="card_difficulty">Tingkat:</span>
+            <div class="flex gap-1 ml-1">
+              <span class="w-4 h-1.5 bg-brand rounded-full"></span>
+              <span class="w-4 h-1.5 bg-brand rounded-full"></span>
+              <span class="w-4 h-1.5 bg-brand rounded-full"></span>
+              <span class="w-4 h-1.5 bg-gray-200 rounded-full"></span>
+              <span class="w-4 h-1.5 bg-gray-200 rounded-full"></span>
+            </div>
+          </div>
+          <a href="portfolio.html" class="btn bg-brand text-white font-black text-xs px-4 py-2 rounded-xl"
+             data-i18n="card_continue_btn">▶ Lanjutkan</a>
+        </div>
+      </div>
+
+      <!-- Kartu: Tantangan Harian -->
+      <div class="bg-white rounded-2xl p-5 border border-brand-border card space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="font-black text-gray-800" data-i18n="card_challenge_title">Tantangan Harian</h2>
+          <span class="text-xs text-orange-500 bg-orange-50 font-bold px-2.5 py-1 rounded-full border border-orange-100"
+                data-i18n="card_challenge_reset">Reset 8j lagi</span>
+        </div>
+
+        <div class="space-y-2.5">
+
+          <!-- Tugas 1: Selesai -->
+          <div class="flex items-center gap-3 p-3 bg-green-50 rounded-xl border border-green-100">
+            <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white text-sm shrink-0">✓</div>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-gray-700" data-i18n="task1_label">Selesaikan 1 Pelajaran</p>
+              <div class="mt-1 h-1.5 bg-green-200 rounded-full">
+                <div class="h-full bg-green-500 rounded-full w-full"></div>
+              </div>
+            </div>
+            <span class="text-xs font-black text-green-600" data-i18n="task1_status">Selesai!</span>
+          </div>
+
+          <!-- Tugas 2: Sedang berjalan (75%) -->
+          <div class="flex items-center gap-3 p-3 bg-yellow-50 rounded-xl border border-yellow-100">
+            <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center text-white text-sm shrink-0"></div>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-gray-700" data-i18n="task2_label">Kumpulkan 20 XP</p>
+              <div class="mt-1 h-1.5 bg-yellow-200 rounded-full">
+                <div class="h-full bg-yellow-400 rounded-full" style="width:75%"></div>
+              </div>
+            </div>
+            <span class="text-xs font-black text-yellow-600" data-i18n="task2_status">15/20</span>
+          </div>
+
+          <!-- Tugas 3: Belum dimulai -->
+          <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
+            <div class="w-8 h-8 bg-gray-300 rounded-lg flex items-center justify-center text-white text-sm shrink-0"></div>
+            <div class="flex-1">
+              <p class="text-sm font-bold text-gray-400" data-i18n="task3_label">Ulang 5 Kosakata</p>
+              <div class="mt-1 h-1.5 bg-gray-200 rounded-full">
+                <div class="h-full bg-gray-300 rounded-full w-0"></div>
+              </div>
+            </div>
+            <span class="text-xs font-black text-gray-400" data-i18n="task3_status">0/5</span>
+          </div>
+
+        </div>
+
+        <p class="text-xs text-center text-gray-400 font-semibold">
+          <span data-i18n="card_challenge_bonus">Selesaikan semua →</span>
+          <span class="text-brand font-black" data-i18n="card_challenge_xp">+50 XP Bonus!</span>
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         COMING SOON — Bahasa daerah lainnya
+         ===================================================== -->
+    <section class="bg-white rounded-2xl p-5 border border-brand-border">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-black text-gray-800" data-i18n="coming_title">Bahasa Lainnya</h2>
+        <span class="text-xs bg-gray-100 text-gray-400 font-bold px-2.5 py-1 rounded-full" data-i18n="coming_badge">Segera Hadir</span>
+      </div>
+      <p class="text-sm text-gray-400 font-semibold mb-4" data-i18n="coming_desc">
+        Saat ini hanya tersedia Bahasa Jawa. Bahasa lain akan segera hadir!
+      </p>
+      <!-- Setiap label "Segera hadir" juga diterjemahkan -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="flex items-center gap-2.5 p-3 bg-gray-50 rounded-xl border border-dashed border-gray-200 opacity-50">
+          <span class="text-2xl">🇮🇩</span>
+          <div>
+            <p class="text-xs font-black text-gray-500">Bahasa Sunda</p>
+            <p class="text-xs text-gray-400" data-i18n="coming_soon">Segera hadir</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5 p-3 bg-gray-50 rounded-xl border border-dashed border-gray-200 opacity-50">
+          <span class="text-2xl">🇮🇩</span>
+          <div>
+            <p class="text-xs font-black text-gray-500">Bahasa Bali</p>
+            <p class="text-xs text-gray-400" data-i18n="coming_soon">Segera hadir</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5 p-3 bg-gray-50 rounded-xl border border-dashed border-gray-200 opacity-50">
+          <span class="text-2xl">🇮🇩</span>
+          <div>
+            <p class="text-xs font-black text-gray-500">Bahasa Minang</p>
+            <p class="text-xs text-gray-400" data-i18n="coming_soon">Segera hadir</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5 p-3 bg-gray-50 rounded-xl border border-dashed border-gray-200 opacity-50">
+          <span class="text-2xl">🇮🇩</span>
+          <div>
+            <p class="text-xs font-black text-gray-500">Bahasa Batak</p>
+            <p class="text-xs text-gray-400" data-i18n="coming_soon">Segera hadir</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end wrapper -->
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer class="bg-[#fdf8f3] border-t border-brand-border mt-12">
+
+    <div class="max-w-5xl mx-auto px-5 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Kolom 1: Brand -->
+      <div class="space-y-3">
+        <span class="font-black text-brand text-lg">AksaraLoka</span>
+        <p class="text-sm text-gray-500 font-semibold leading-relaxed" data-i18n="footer_desc">
+          Platform belajar bahasa daerah Indonesia secara gratis, seru, dan efektif.
+        </p>
+        <div class="flex gap-2 pt-1">
+          <a href="#" class="w-7 h-7 bg-brand-soft rounded-lg flex items-center justify-center text-brand text-xs font-black hover:bg-brand hover:text-white transition-colors">𝕏</a>
+          <a href="#" class="w-7 h-7 bg-brand-soft rounded-lg flex items-center justify-center text-brand text-xs font-black hover:bg-brand hover:text-white transition-colors">f</a>
+          <a href="#" class="w-7 h-7 bg-brand-soft rounded-lg flex items-center justify-center text-brand text-xs font-black hover:bg-brand hover:text-white transition-colors">📸</a>
+          <a href="#" class="w-7 h-7 bg-brand-soft rounded-lg flex items-center justify-center text-brand text-xs font-black hover:bg-brand hover:text-white transition-colors">▶</a>
+        </div>
+      </div>
+
+      <!-- Kolom 2: Platform -->
+      <div class="space-y-3">
+        <h3 class="text-brand font-black text-xs uppercase tracking-widest" data-i18n="footer_platform">Platform</h3>
+        <ul class="space-y-1.5">
+          <li><a href="about.html"  class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors" data-i18n="footer_about">Tentang Kami</a></li>
+          <li><a href="kursus.html" class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors" data-i18n="footer_courses">Kursus</a></li>
+          <li><a href="blog.html"   class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors" data-i18n="footer_blog">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolom 3: Bantuan -->
+      <div class="space-y-3">
+        <h3 class="text-brand font-black text-xs uppercase tracking-widest" data-i18n="footer_support">Bantuan</h3>
+        <ul class="space-y-1.5">
+          <li><a href="help.html"    class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors" data-i18n="footer_help">Pusat Bantuan</a></li>
+          <li><a href="privasi.html" class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors" data-i18n="footer_privacy">Kebijakan Privasi</a></li>
+          <li><a href="terms.html"   class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors" data-i18n="footer_terms">Syarat & Ketentuan</a></li>
+          <li><a href="contact.html" class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors" data-i18n="footer_contact">Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolom 4: Pilihan bahasa + info tim -->
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <h3 class="text-brand font-black text-xs uppercase tracking-widest" data-i18n="footer_lang">Bahasa Situs</h3>
+
+          <!--
+            Dropdown ganti bahasa.
+            id="lang-select" dipakai oleh i18n.js untuk sinkronisasi nilai awal.
+            onchange memanggil applyLang() langsung dari HTML.
+          -->
+          <select id="lang-select"
+                  onchange="applyLang(this.value)"
+                  class="w-full text-sm font-semibold text-gray-600 bg-white border-2 border-brand-border rounded-xl px-3 py-2 focus:outline-none focus:border-brand transition-colors">
+            <option value="id">🇮🇩 Bahasa Indonesia</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="jw">ꦲ Basa Jawa</option>
+          </select>
+        </div>
+
+        <!-- Info kelompok pembuat -->
+        <div class="space-y-2">
+          <h3 class="text-brand font-black text-xs uppercase tracking-widest" data-i18n="footer_team">Kelompok 11</h3>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="text-xs bg-brand-soft text-brand font-bold px-2.5 py-1 rounded-full border border-brand-border">Dwiki</span>
+            <span class="text-xs bg-brand-soft text-brand font-bold px-2.5 py-1 rounded-full border border-brand-border">Zaki</span>
+            <span class="text-xs bg-brand-soft text-brand font-bold px-2.5 py-1 rounded-full border border-brand-border">Hafid</span>
+          </div>
+          <p class="text-xs text-gray-400 font-semibold leading-relaxed">
+            <span data-i18n="footer_mentor">Pembimbing:</span><br/>
+            Bu Reisa Permatasari, ST, M.Kom.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-brand-border bg-white">
+      <div class="max-w-5xl mx-auto px-5 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p class="text-xs text-gray-400 font-semibold" data-i18n="footer_copy">
+          &copy; 2026 AksaraLoka · Kelompok 11 · MPSI &amp; PemWeb
+        </p>
+        <span class="text-xs font-black text-brand bg-brand-soft border border-brand-border px-3 py-1 rounded-full"
+              data-i18n="footer_slogan">
+          Ayo Lestarikan Bahasa Daerah!
+        </span>
+      </div>
+    </div>
+
+  </footer>
+
+</body>
+</html>
