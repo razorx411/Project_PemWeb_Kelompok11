@@ -1,6 +1,6 @@
 <p align="center">
   <h1>🌐 AksaraLoka Web Project</h1>
-  <p><i>Platform Pembelajaran Bahasa Daerah Berbasis Web</i></p>
+  <p align="center"><i>Platform Pembelajaran Bahasa Daerah Berbasis Web</i></p>
 </p>
 
 <p align="center">
