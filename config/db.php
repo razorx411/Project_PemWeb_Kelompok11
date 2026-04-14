@@ -17,13 +17,12 @@ function getPDO(): PDO {
         }
 
         $host    = $env['DB_HOST']    ?? 'localhost';
-        $port    = $env['DB_PORT']    ?? '3336';
         $dbname  = $env['DB_NAME']    ?? 'aksaraloka';
         $user    = $env['DB_USER']    ?? 'root';
-        $pass    = $env['DB_PASS']    ?? '';
+        $pass    = $env['DB_PASS']    ?? 'razorx411';
         $charset = $env['DB_CHARSET'] ?? 'utf8mb4';
 
-        $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=$charset";
+        $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
