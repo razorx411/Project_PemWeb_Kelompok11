@@ -22,8 +22,22 @@ const greetingText = document.getElementById("greetingText");
 const greetingTime = document.getElementById("greetingTime");
 
 // Ambil user
-const storedUser = localStorage.getItem('user');
-const user = storedUser && storedUser.trim() !== "" ? storedUser : "User";
+const storedRaw = localStorage.getItem('user');
+let user = "User";
+let userInitial = "U";
+if (storedRaw) {
+  try {
+    const userObj = JSON.parse(storedRaw);
+    user = userObj.nama || "User";
+    userInitial = user.charAt(0).toUpperCase();
+  } catch(e) {
+    user = storedRaw;
+    userInitial = user.charAt(0).toUpperCase();
+  }
+}
+// Update avatar initial di navbar
+const avatarEl = document.getElementById("avatarInitial");
+if (avatarEl) avatarEl.textContent = userInitial;
 
 // Waktu
 const hour = new Date().getHours();

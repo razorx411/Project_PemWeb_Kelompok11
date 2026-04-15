@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 $pdo = getPDO();
 $user_id = $_SESSION['user_id'];
 
-$stmt = $pdo->prepare("SELECT id, nama, email FROM users WHERE id = ?");
+$stmt = $pdo->prepare("SELECT id, nama, email, password_hash FROM users WHERE id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch();
 

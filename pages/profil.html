@@ -17,7 +17,7 @@
   <!-- NAVBAR (copy dari contact biar konsisten) -->
   <header class="w-full border-b border-[#e8d0b0] bg-white sticky top-0 z-50">
     <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-      <a href="../home-page.html" class="font-black text-[#6b3f00] text-lg font-nunito">AksaraLoka</a>
+      <a href="../pages/home-page.html" class="font-black text-[#6b3f00] text-lg font-nunito">AksaraLoka</a>
  
     </div>
   </header>
@@ -46,13 +46,8 @@
 
         <!-- NAME -->
         <div class="text-center mt-4">
-          <h1 class="text-xl font-black text-[#6b3f00] font-nunito">
-            EzWin 2021
-          </h1>
-          <p class="text-sm text-gray-500">@EzWin2021</p>
-          <p class="text-xs text-gray-400 mt-1">
-            Joined March 2024
-          </p>
+          <h1 id="profileName" class="text-xl font-black text-[#6b3f00] font-nunito">...</h1>
+          <p id="profileUsername" class="text-sm text-gray-500">...</p>
         </div>
 
         <!-- FOLLOW INFO -->
@@ -81,6 +76,30 @@
     </div>
 
   </main>
+
+  <script>
+window.addEventListener("DOMContentLoaded", async () => {
+  // Coba ambil dari API dulu (session), fallback ke localStorage
+  try {
+    const res = await fetch("../api/get_profil.php", { credentials: "include" });
+    const data = await res.json();
+    if (data.success && data.user) {
+      const nama = data.user.nama || "Pengguna";
+      document.getElementById("profileName").textContent = nama;
+      document.getElementById("profileUsername").textContent = "@" + nama.replace(/\s+/g,'').toLowerCase();
+      return;
+    }
+  } catch(e) {}
+  // Fallback: localStorage
+  try {
+    const u = JSON.parse(localStorage.getItem('user'));
+    if (u && u.nama) {
+      document.getElementById("profileName").textContent = u.nama;
+      document.getElementById("profileUsername").textContent = "@" + u.nama.replace(/\s+/g,'').toLowerCase();
+    }
+  } catch(e) {}
+});
+</script>
 
 </body>
 </html>

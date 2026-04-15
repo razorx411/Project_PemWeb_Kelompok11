@@ -11,9 +11,14 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (data.success) {
       document.querySelector('[name="nama"]').value = data.user.nama;
       document.querySelector('[name="email"]').value = data.user.email;
-    } else {
-      alert(data.message || "Gagal ambil data");
-    }
+      document.querySelector('[name="password"]').value = data.user.password;
+
+      const initial = document.getElementById("avatarInitial");
+        if (initial) initial.textContent = (data.user.nama || "?").charAt(0).toUpperCase(); 
+        } else {
+          alert(data.message || "Gagal ambil data");
+        }
+        
   } catch (err) {
     console.error("ERROR:", err);
   }
