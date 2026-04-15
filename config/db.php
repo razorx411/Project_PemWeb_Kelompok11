@@ -19,7 +19,7 @@ function getPDO(): PDO {
         $host    = $env['DB_HOST']    ?? 'localhost';
         $dbname  = $env['DB_NAME']    ?? 'aksaraloka';
         $user    = $env['DB_USER']    ?? 'root';
-        $pass    = $env['DB_PASS']    ?? 'razorx411';
+        $pass    = $env['DB_PASS']    ?? '';
         $charset = $env['DB_CHARSET'] ?? 'utf8mb4';
 
         $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
