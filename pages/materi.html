@@ -5,194 +5,170 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Materi - AksaraLoka</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- CONFIG SAMA DENGAN HOME -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: '#f97316',
-            'brand-soft': '#fff7ed',
-            'brand-border': '#fed7aa'
+            brand: '#7c4a03',
+            'brand-dark': '#5c3501',
+            'brand-soft': '#f5e6d3',
+            'brand-border': '#e6c7a3'
+          },
+          fontFamily: {
+            main: ['Poppins', 'sans-serif'],
+            title: ['Cinzel', 'serif']
           }
         }
       }
     }
   </script>
 
+  <!-- FONT SAMA -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 </head>
 
-<body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-nunito">
+<body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-main">
 
 <!-- ==================== NAVBAR ==================== -->
 <nav class="bg-white border-b border-brand-border sticky top-0 z-50">
   <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
 
-    <!-- Logo -->
-    <a href="home.html" class="flex items-center gap-2">
-      <span class="font-black text-brand text-lg">AksaraLoka</span>
+    <a href="home-page.html" class="flex items-center gap-2">
+      <span class="font-title text-brand text-lg">AksaraLoka</span>
     </a>
 
-    <!-- Nav links -->
     <div class="hidden md:flex items-center gap-1 text-sm font-bold">
-      <a href="home.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Beranda</a>
-      <a href="#" class="px-3 py-1.5 rounded-lg bg-brand-soft text-brand">Materi</a>
-      <a href="#" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Latihan</a>
-      <a href="#" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Peringkat</a>
-      <a href="#" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Komunitas</a>
+      <a href="home-page.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Beranda</a>
+      <a href="materi.html" class="px-3 py-1.5 rounded-lg bg-brand-soft text-brand">Materi</a>
+      <a href="latihan.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Latihan</a>
+      <a href="peringkat.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Peringkat</a>
+      <a href="komunitas.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Komunitas</a>
     </div>
 
-    <!-- Right -->
     <div class="flex items-center gap-2">
       <div class="hidden sm:flex items-center gap-1 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-full text-xs font-bold text-orange-500">
         🔥 12
       </div>
       <button class="relative w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100">
-        <span>🔔</span>
+        🔔
         <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
       </button>
-      <a href="profil.html">
-        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white text-xs font-black">H</div>
-      </a>
+      <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white text-xs font-black">H</div>
     </div>
 
   </div>
 </nav>
 <!-- ==================== END NAVBAR ==================== -->
 
-<div class="max-w-5xl mx-auto px-5 py-8 space-y-8">
+<!-- ==================== CONTENT ==================== -->
+<div class="max-w-5xl mx-auto px-5 py-8 space-y-6">
 
-  <!-- HEADER STYLE SAMA KAYAK HOME -->
-  <section class="bg-white rounded-2xl p-5 border border-brand-border">
-    <div class="flex items-center justify-between">
+  <!-- HEADER -->
+  <div class="bg-white rounded-2xl p-5 border border-brand-border">
+    <div class="flex justify-between items-center">
       <div>
-        <h1 class="text-lg font-black text-gray-800">Materi Pembelajaran</h1>
+        <h1 class="font-black text-gray-800">Materi Pembelajaran</h1>
         <p class="text-xs text-gray-500 font-semibold">Pilih materi untuk mulai belajar</p>
       </div>
-      <span class="text-xs bg-brand-soft text-brand font-bold px-2.5 py-1 rounded-full border border-brand-border">
+      <span class="text-xs bg-brand-soft text-brand px-2.5 py-1 rounded-full font-bold border border-brand-border">
         3 Materi
       </span>
     </div>
-  </section>
-
-  <!-- FILTER STYLE CONSISTENT -->
-  <div class="flex gap-2 flex-wrap">
-    <button onclick="filterMateri('all')" class="px-3 py-1.5 text-xs font-black rounded-lg bg-brand text-white">Semua</button>
-    <button onclick="filterMateri('aksara')" class="px-3 py-1.5 text-xs font-black rounded-lg bg-brand-soft text-brand border border-brand-border">Aksara</button>
-    <button onclick="filterMateri('ngoko')" class="px-3 py-1.5 text-xs font-black rounded-lg bg-brand-soft text-brand border border-brand-border">Ngoko</button>
-    <button onclick="filterMateri('krama')" class="px-3 py-1.5 text-xs font-black rounded-lg bg-brand-soft text-brand border border-brand-border">Krama</button>
   </div>
 
-  <!-- CARD MODEL SAMA KAYAK CONTINUE LEARNING -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+  <!-- FILTER -->
+  <div class="flex gap-2">
+    <button onclick="filterMateri('all')" class="filter-btn active px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">Semua</button>
+    <button onclick="filterMateri('aksara')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Aksara</button>
+    <button onclick="filterMateri('ngoko')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Ngoko</button>
+    <button onclick="filterMateri('krama')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Krama</button>
+  </div>
 
-    <!-- AKSARA -->
-    <div onclick="openMateri('aksara')" class="materi aksara bg-white rounded-2xl p-5 border border-brand-border space-y-3 cursor-pointer hover:bg-brand-soft transition">
-      <div class="flex items-center justify-between">
-        <h2 class="font-black text-gray-800 text-sm">Aksara Jawa</h2>
-        <span class="text-xs bg-brand-soft text-brand font-bold px-2 py-1 rounded-full border border-brand-border">Dasar</span>
+  <!-- CARD -->
+  <div class="grid md:grid-cols-2 gap-5">
+
+    <div onclick="openMateri('aksara')" class="materi aksara bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
+      <div class="flex justify-between">
+        <h2 class="font-black text-sm">Aksara Jawa</h2>
+        <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
       </div>
-
-      <p class="text-xs text-gray-500 font-semibold">Belajar huruf dasar aksara Jawa</p>
-
-      <!-- PROGRESS STYLE SAMA -->
-      <div class="space-y-1">
-        <div class="flex justify-between text-xs font-bold text-gray-400">
-          <span>Progress</span>
-          <span class="text-brand">0%</span>
-        </div>
-        <div class="h-2 bg-gray-100 rounded-full">
-          <div class="h-full bg-brand rounded-full w-0"></div>
-        </div>
-      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Belajar huruf aksara Jawa</p>
     </div>
 
-    <!-- NGOKO -->
-    <div onclick="openMateri('ngoko')" class="materi ngoko bg-white rounded-2xl p-5 border border-brand-border space-y-3 cursor-pointer hover:bg-brand-soft transition">
-      <div class="flex items-center justify-between">
-        <h2 class="font-black text-gray-800 text-sm">Bahasa Ngoko</h2>
-        <span class="text-xs bg-brand-soft text-brand font-bold px-2 py-1 rounded-full border border-brand-border">Dasar</span>
+    <div onclick="openMateri('ngoko')" class="materi ngoko bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
+      <div class="flex justify-between">
+        <h2 class="font-black text-sm">Bahasa Ngoko</h2>
+        <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
       </div>
-
-      <p class="text-xs text-gray-500 font-semibold">Digunakan sehari-hari</p>
-
-      <div class="space-y-1">
-        <div class="flex justify-between text-xs font-bold text-gray-400">
-          <span>Progress</span>
-          <span class="text-brand">0%</span>
-        </div>
-        <div class="h-2 bg-gray-100 rounded-full">
-          <div class="h-full bg-brand rounded-full w-0"></div>
-        </div>
-      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa sehari-hari</p>
     </div>
 
-    <!-- KRAMA -->
-    <div onclick="openMateri('krama')" class="materi krama bg-white rounded-2xl p-5 border border-brand-border space-y-3 cursor-pointer hover:bg-brand-soft transition">
-      <div class="flex items-center justify-between">
-        <h2 class="font-black text-gray-800 text-sm">Krama Alus</h2>
-        <span class="text-xs bg-brand-soft text-brand font-bold px-2 py-1 rounded-full border border-brand-border">Sopan</span>
+    <div onclick="openMateri('krama')" class="materi krama bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
+      <div class="flex justify-between">
+        <h2 class="font-black text-sm">Krama Alus</h2>
+        <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Sopan</span>
       </div>
-
-      <p class="text-xs text-gray-500 font-semibold">Bahasa untuk menghormati</p>
-
-      <div class="space-y-1">
-        <div class="flex justify-between text-xs font-bold text-gray-400">
-          <span>Progress</span>
-          <span class="text-brand">0%</span>
-        </div>
-        <div class="h-2 bg-gray-100 rounded-full">
-          <div class="h-full bg-brand rounded-full w-0"></div>
-        </div>
-      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa menghormati</p>
     </div>
 
   </div>
 </div>
 
-<!-- MODAL (SAMA STYLE CARD) -->
+<!-- ==================== MODAL ==================== -->
 <div id="modal" class="fixed inset-0 bg-black/40 hidden items-center justify-center">
-  <div class="bg-white w-full max-w-md rounded-2xl p-5 border border-brand-border space-y-3">
-    <h2 id="modalTitle" class="text-sm font-black"></h2>
+  <div class="bg-white rounded-2xl p-5 border border-brand-border w-full max-w-sm animate-scaleIn">
+    <h2 id="modalTitle" class="font-black mb-2"></h2>
     <div id="modalContent" class="text-xs text-gray-600 font-semibold"></div>
-    <button onclick="closeModal()" class="w-full bg-brand text-white text-xs font-black py-2 rounded-xl">Tutup</button>
+    <button onclick="closeModal()" class="mt-4 w-full bg-brand text-white py-2 rounded-xl text-xs font-black">
+      Tutup
+    </button>
   </div>
 </div>
 
+<!-- ==================== SCRIPT ==================== -->
 <script>
 function filterMateri(kategori) {
-  const items = document.querySelectorAll('.materi');
-  items.forEach(item => {
-    item.style.display = (kategori === 'all' || item.classList.contains(kategori)) ? 'block' : 'none';
+  document.querySelectorAll('.materi').forEach(el => {
+    el.style.display = kategori === 'all' || el.classList.contains(kategori) ? 'block' : 'none';
   });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('bg-brand', 'text-white');
+    btn.classList.add('bg-brand-soft', 'text-brand');
+  });
+
+  event.target.classList.add('bg-brand', 'text-white');
 }
 
 function openMateri(type) {
+  const modal = document.getElementById('modal');
   const title = document.getElementById('modalTitle');
   const content = document.getElementById('modalContent');
-  const modal = document.getElementById('modal');
 
-  if (type === 'aksara') {
-    title.innerText = 'Aksara Jawa';
-    content.innerHTML = 'Ha Na Ca Ra Ka<br>Da Ta Sa Wa La<br>Pa Dha Ja Ya Nya<br>Ma Ga Ba Tha Nga';
+  if(type==='aksara'){
+    title.innerText='Aksara Jawa';
+    content.innerHTML='Ha Na Ca Ra Ka<br>Da Ta Sa Wa La';
   }
-
-  if (type === 'ngoko') {
-    title.innerText = 'Bahasa Ngoko';
-    content.innerHTML = 'Aku arep mangan<br>Kowe lagi apa?<br>Ayo dolan';
+  if(type==='ngoko'){
+    title.innerText='Ngoko';
+    content.innerHTML='Aku mangan<br>Kowe apa';
   }
-
-  if (type === 'krama') {
-    title.innerText = 'Krama Alus';
-    content.innerHTML = 'Kula bade nedha<br>Panjenengan tindak pundi?<br>Mangga pinarak';
+  if(type==='krama'){
+    title.innerText='Krama';
+    content.innerHTML='Kula nedha<br>Panjenengan';
   }
 
   modal.classList.remove('hidden');
   modal.classList.add('flex');
 }
 
-function closeModal() {
+function closeModal(){
   const modal = document.getElementById('modal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
