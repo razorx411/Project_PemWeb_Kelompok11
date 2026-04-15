@@ -8,7 +8,7 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- CONFIG SAMA DENGAN HOME -->
+  <!-- CONFIG -->
   <script>
     tailwind.config = {
       theme: {
@@ -28,18 +28,18 @@
     }
   </script>
 
-  <!-- FONT SAMA -->
+  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 </head>
 
 <body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-main">
 
-<!-- ==================== NAVBAR ==================== -->
+<!-- ================= NAVBAR ================= -->
 <nav class="bg-white border-b border-brand-border sticky top-0 z-50">
   <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
 
-    <a href="home-page.html" class="flex items-center gap-2">
+    <a href="home-page.html">
       <span class="font-title text-brand text-lg">AksaraLoka</span>
     </a>
 
@@ -64,9 +64,10 @@
 
   </div>
 </nav>
-<!-- ==================== END NAVBAR ==================== -->
+<!-- ================= END NAVBAR ================= -->
 
-<!-- ==================== CONTENT ==================== -->
+
+<!-- ================= CONTENT ================= -->
 <div class="max-w-5xl mx-auto px-5 py-8 space-y-6">
 
   <!-- HEADER -->
@@ -81,25 +82,40 @@
       </span>
     </div>
   </div>
-  
-<div class="flex gap-2">
-  <button onclick="filterMateri(event, 'all')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">Semua</button>
-  <button onclick="filterMateri(event, 'aksara')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Aksara</button>
-  <button onclick="filterMateri(event, 'ngoko')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Ngoko</button>
-  <button onclick="filterMateri(event, 'krama')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Krama</button>
-</div>
+
+    <!-- 🔍 SEARCH -->
+  <div class="bg-white rounded-2xl p-4 border border-brand-border">
+    <input 
+      type="text" 
+      id="searchInput"
+      placeholder="Cari materi..."
+      class="w-full px-4 py-2 rounded-xl border border-brand-border text-sm font-semibold focus:outline-none focus:border-brand"
+      onkeyup="searchMateri()"
+    >
+  </div>
+
+  <!-- FILTER -->
+  <div class="flex gap-2">
+    <button onclick="filterMateri(event, 'all')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">Semua</button>
+    <button onclick="filterMateri(event, 'aksara')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Aksara</button>
+    <button onclick="filterMateri(event, 'ngoko')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Ngoko</button>
+    <button onclick="filterMateri(event, 'krama')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Krama</button>
+  </div>
 
   <!-- CARD -->
   <div class="grid md:grid-cols-2 gap-5">
 
-    <div onclick="openMateri('aksara')" class="materi aksara bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
+    <!-- AKSARA (PINDAH HALAMAN) -->
+    <a href="materi-aksara.html" 
+       class="materi aksara block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
       <div class="flex justify-between">
         <h2 class="font-black text-sm">Aksara Jawa</h2>
         <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
       </div>
       <p class="text-xs text-gray-500 mt-2 font-semibold">Belajar huruf aksara Jawa</p>
-    </div>
+    </a>
 
+    <!-- NGOKO -->
     <div onclick="openMateri('ngoko')" class="materi ngoko bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
       <div class="flex justify-between">
         <h2 class="font-black text-sm">Bahasa Ngoko</h2>
@@ -108,6 +124,7 @@
       <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa sehari-hari</p>
     </div>
 
+    <!-- KRAMA -->
     <div onclick="openMateri('krama')" class="materi krama bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
       <div class="flex justify-between">
         <h2 class="font-black text-sm">Krama Alus</h2>
@@ -119,9 +136,9 @@
   </div>
 </div>
 
-<!-- ==================== MODAL ==================== -->
+<!-- ================= MODAL ================= -->
 <div id="modal" class="fixed inset-0 bg-black/40 hidden items-center justify-center">
-  <div class="bg-white rounded-2xl p-5 border border-brand-border w-full max-w-sm animate-scaleIn">
+  <div class="bg-white rounded-2xl p-5 border border-brand-border w-full max-w-sm">
     <h2 id="modalTitle" class="font-black mb-2"></h2>
     <div id="modalContent" class="text-xs text-gray-600 font-semibold"></div>
     <button onclick="closeModal()" class="mt-4 w-full bg-brand text-white py-2 rounded-xl text-xs font-black">
@@ -130,50 +147,7 @@
   </div>
 </div>
 
-<!-- ==================== SCRIPT ==================== -->
-<script>
-function filterMateri(kategori) {
-  document.querySelectorAll('.materi').forEach(el => {
-    el.style.display = kategori === 'all' || el.classList.contains(kategori) ? 'block' : 'none';
-  });
-
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.remove('bg-brand', 'text-white');
-    btn.classList.add('bg-brand-soft', 'text-brand');
-  });
-
-  event.target.classList.add('bg-brand', 'text-white');
-}
-
-function openMateri(type) {
-  const modal = document.getElementById('modal');
-  const title = document.getElementById('modalTitle');
-  const content = document.getElementById('modalContent');
-
-  if(type==='aksara'){
-    title.innerText='Aksara Jawa';
-    content.innerHTML='Ha Na Ca Ra Ka<br>Da Ta Sa Wa La';
-  }
-  if(type==='ngoko'){
-    title.innerText='Ngoko';
-    content.innerHTML='Aku mangan<br>Kowe apa';
-  }
-  if(type==='krama'){
-    title.innerText='Krama';
-    content.innerHTML='Kula nedha<br>Panjenengan';
-  }
-
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-}
-
-function closeModal(){
-  const modal = document.getElementById('modal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-}
-</script>
-<!-- ==================== SCRIPT ==================== -->
+<!-- ================= SCRIPT ================= -->
 <script>
 function filterMateri(e, kategori) {
 
@@ -190,12 +164,46 @@ function filterMateri(e, kategori) {
     btn.classList.add('bg-brand-soft', 'text-brand');
   });
 
-  // BUTTON YANG DIKLIK JADI COKLAT
+  // AKTIF BUTTON
   e.target.classList.remove('bg-brand-soft', 'text-brand');
   e.target.classList.add('bg-brand', 'text-white');
 }
+
+function openMateri(type) {
+  const modal = document.getElementById('modal');
+  const title = document.getElementById('modalTitle');
+  const content = document.getElementById('modalContent');
+
+  if(type==='ngoko'){
+    title.innerText='Ngoko';
+    content.innerHTML='Aku mangan<br>Kowe apa';
+  }
+  if(type==='krama'){
+    title.innerText='Krama';
+    content.innerHTML='Kula nedha<br>Panjenengan';
+  }
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+// 🔍 SEARCH FUNCTION
+function searchMateri() {
+  const input = document.getElementById('searchInput').value.toLowerCase();
+  const items = document.querySelectorAll('.materi');
+
+  items.forEach(item => {
+    const text = item.innerText.toLowerCase();
+    item.style.display = text.includes(input) ? 'block' : 'none';
+  });
+}
+
+function closeModal(){
+  const modal = document.getElementById('modal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
 </script>
-</body>
-</html>
+
 </body>
 </html>

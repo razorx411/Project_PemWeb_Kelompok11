@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Materi Aksara Jawa — AksaraLoka</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CONFIG SAMA DENGAN HOME -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#7c4a03',
+            'brand-soft': '#f5e6d3',
+            'brand-border': '#e6c7a3',
+            'brand-dark': '#5c3501'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FONT SAMA -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-[Nunito]">
+
+<!-- NAVBAR (SAMA HOME) -->
+<nav class="bg-white border-b border-brand-border sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+
+    <a href="home-page.html" class="font-black text-brand text-lg">AksaraLoka</a>
+
+    <div class="hidden md:flex items-center gap-1 text-sm font-bold">
+      <a href="home-page.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Beranda</a>
+      <a href="#" class="px-3 py-1.5 rounded-lg bg-brand-soft text-brand">Materi</a>
+      <a href="#" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Latihan</a>
+      <a href="#" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Peringkat</a>
+      <a href="#" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Komunitas</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <div class="hidden sm:flex items-center gap-1 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-full text-xs font-bold text-orange-500">
+        🔥 12
+      </div>
+      <button class="relative w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100">
+        🔔
+        <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+      </button>
+      <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white text-xs font-black">H</div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="max-w-5xl mx-auto px-5 py-8 space-y-8">
+
+  <!-- HERO -->
+  <section class="bg-brand rounded-2xl p-6 md:p-8 text-white">
+    <div class="flex justify-between items-center">
+      <div>
+        <p class="text-white/60 text-xs font-bold uppercase tracking-widest">Materi Utama</p>
+        <h1 class="text-2xl md:text-3xl font-black mt-1">Aksara Jawa</h1>
+        <p class="text-white/70 text-sm mt-2 max-w-md">
+          Sistem tulisan tradisional Bahasa Jawa yang terdiri dari 
+          <strong>20 huruf dasar</strong> (Hanacaraka).
+        </p>
+      </div>
+
+      <div class="bg-white/10 px-5 py-4 rounded-2xl text-center">
+        <p class="text-4xl font-black text-yellow-300">ꦲ</p>
+        <p class="text-xs text-white/70">Ha</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <div class="grid grid-cols-3 gap-4">
+    <div class="bg-white rounded-2xl p-4 border border-brand-border text-center">
+      <p class="text-xl font-black text-brand">20</p>
+      <p class="text-xs text-gray-500 font-semibold">Huruf</p>
+    </div>
+    <div class="bg-white rounded-2xl p-4 border border-brand-border text-center">
+      <p class="text-xl font-black text-brand">4</p>
+      <p class="text-xs text-gray-500 font-semibold">Baris</p>
+    </div>
+    <div class="bg-white rounded-2xl p-4 border border-brand-border text-center">
+      <p class="text-xl font-black text-brand">Ha-Nga</p>
+      <p class="text-xs text-gray-500 font-semibold">Urutan</p>
+    </div>
+  </div>
+
+  <!-- AKSARA GRID -->
+  <section class="space-y-4">
+
+    <h2 class="font-black text-gray-800">Urutan Aksara Jawa</h2>
+
+    <!-- reusable row -->
+    <div class="bg-white rounded-2xl border border-brand-border overflow-hidden">
+      <div class="bg-brand-soft px-4 py-2 text-xs font-bold text-brand border-b border-brand-border">
+        Baris 1
+      </div>
+
+      <div class="grid grid-cols-5">
+        <div class="p-4 text-center hover:bg-brand-soft">ꦲ<br><span class="text-xs">Ha</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦤ<br><span class="text-xs">Na</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦕ<br><span class="text-xs">Ca</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦫ<br><span class="text-xs">Ra</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦏ<br><span class="text-xs">Ka</span></div>
+      </div>
+    </div>
+
+    <!-- Baris 2 -->
+    <div class="bg-white rounded-2xl border border-brand-border overflow-hidden">
+      <div class="bg-brand-soft px-4 py-2 text-xs font-bold text-brand border-b border-brand-border">
+        Baris 2
+      </div>
+      <div class="grid grid-cols-5">
+        <div class="p-4 text-center hover:bg-brand-soft">ꦢ<br><span class="text-xs">Da</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦠ<br><span class="text-xs">Ta</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦱ<br><span class="text-xs">Sa</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦮ<br><span class="text-xs">Wa</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦭ<br><span class="text-xs">La</span></div>
+      </div>
+    </div>
+
+    <!-- Baris 3 -->
+    <div class="bg-white rounded-2xl border border-brand-border overflow-hidden">
+      <div class="bg-brand-soft px-4 py-2 text-xs font-bold text-brand border-b border-brand-border">
+        Baris 3
+      </div>
+      <div class="grid grid-cols-5">
+        <div class="p-4 text-center hover:bg-brand-soft">ꦥ<br><span class="text-xs">Pa</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦝ<br><span class="text-xs">Dha</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦗ<br><span class="text-xs">Ja</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦪ<br><span class="text-xs">Ya</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦚ<br><span class="text-xs">Nya</span></div>
+      </div>
+    </div>
+
+    <!-- Baris 4 -->
+    <div class="bg-white rounded-2xl border border-brand-border overflow-hidden">
+      <div class="bg-brand-soft px-4 py-2 text-xs font-bold text-brand border-b border-brand-border">
+        Baris 4
+      </div>
+      <div class="grid grid-cols-5">
+        <div class="p-4 text-center hover:bg-brand-soft">ꦩ<br><span class="text-xs">Ma</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦒ<br><span class="text-xs">Ga</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦧ<br><span class="text-xs">Ba</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦛ<br><span class="text-xs">Tha</span></div>
+        <div class="p-4 text-center hover:bg-brand-soft">ꦔ<br><span class="text-xs">Nga</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <div class="bg-brand-soft rounded-2xl p-5 border border-brand-border flex justify-between items-center">
+    <div>
+      <h3 class="font-black text-brand">Siap latihan?</h3>
+      <p class="text-xs text-gray-500">Uji pemahaman kamu sekarang</p>
+    </div>
+    <a href="#" class="bg-brand text-white px-5 py-2 rounded-xl text-xs font-black">
+      Mulai →
+    </a>
+  </div>
+
+</main>
+
+</body>
+</html>
