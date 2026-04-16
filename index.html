@@ -18,6 +18,10 @@
               dark:    '#99610e',
               darker:  '#7a4d09',
               theme:   '#6b3f00',
+              /* Tambahan untuk footer bg & border */
+              light:   '#fdf8f0',
+              border:  '#e8d5b0',
+              surface: '#f5ede0',
             },
           },
           keyframes: {
@@ -48,14 +52,15 @@
   <header class="w-full border-b border-gray-200 bg-white sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-      <a href="index.html" class="text-[#6b3f00] font-extrabold text-2xl tracking-tight hover:opacity-80 transition-opacity">
+      <a href="index.html"
+         class="text-brown-theme font-extrabold text-2xl tracking-tight hover:opacity-80 transition-opacity">
         AksaraLoka
       </a>
 
       <nav class="flex items-center gap-3">
-        <!-- Masuk → login.html -->
+        <!-- Masuk -->
         <a href="pages/login-page.html"
-            class="hidden md:block
+           class="hidden md:block
                   text-brown-theme font-extrabold text-sm uppercase tracking-widest
                   px-5 py-2 rounded-xl bg-white
                   border-2 border-b-4 border-gray-200
@@ -65,12 +70,12 @@
           Masuk
         </a>
 
-        <!-- Mulai → register-page.html -->
+        <!-- Mulai -->
         <a href="pages/register-page.html"
-          class="text-white font-extrabold text-sm uppercase tracking-widest
+           class="text-white font-extrabold text-sm uppercase tracking-widest
                   px-5 py-2 rounded-xl
-                  bg-[#aa6d11] border-b-4 border-[#99610e]
-                  hover:bg-[#7a4d09] hover:translate-y-0.5 hover:border-b-2
+                  bg-brown border-b-4 border-brown-dark
+                  hover:bg-brown-darker hover:translate-y-0.5 hover:border-b-2
                   active:translate-y-1 active:border-b-0
                   transition-all duration-100">
           Mulai
@@ -99,20 +104,20 @@
 
           <div class="opacity-0 animate-float-up-btns w-full flex flex-col gap-3 pt-2">
 
-            <!-- Daftar → register -->
+            <!-- Daftar -->
             <a href="pages/register-page.html"
-                class="w-full text-center text-white font-extrabold text-base uppercase tracking-widest
+               class="w-full text-center text-white font-extrabold text-base uppercase tracking-widest
                       py-4 rounded-2xl shadow-md
-                      bg-[#aa6d11] border-b-4 border-[#99610e]
-                      hover:bg-[#7a4d09] hover:translate-y-0.5 hover:border-b-2
+                      bg-brown border-b-4 border-brown-dark
+                      hover:bg-brown-darker hover:translate-y-0.5 hover:border-b-2
                       active:translate-y-1 active:border-b-0
                       transition-all duration-100">
               DAFTAR SEKARANG
             </a>
 
-            <!-- Sudah punya akun → login -->
+            <!-- Sudah punya akun -->
             <a href="pages/login-page.html"
-                class="w-full text-center text-brown-theme font-extrabold text-base uppercase tracking-widest
+               class="w-full text-center text-brown-theme font-extrabold text-base uppercase tracking-widest
                       py-4 rounded-2xl bg-white
                       border-2 border-b-4 border-gray-200
                       hover:bg-gray-100 hover:translate-y-0.5 hover:border-b-2
@@ -129,33 +134,33 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="w-full bg-[#fdf8f0] border-t-2 border-[#e8d5b0] mt-16">
+  <footer class="w-full bg-brown-light border-t-2 border-brown-border mt-16">
     <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
 
       <div class="flex flex-col gap-3">
-        <span class="text-[#aa6d11] font-extrabold text-xl tracking-tight cursor-default select-none">AksaraLoka</span>
+        <span class="text-brown font-extrabold text-xl tracking-tight cursor-default select-none">AksaraLoka</span>
         <p class="text-sm text-gray-500 leading-relaxed cursor-default select-none">
           Platform belajar bahasa daerah yang gratis, seru, dan efektif untuk semua kalangan.
         </p>
       </div>
 
       <div class="flex flex-col gap-3">
-        <h3 class="text-[#aa6d11] font-extrabold text-sm uppercase tracking-widest cursor-default select-none">Tim Pengembang</h3>
+        <h3 class="text-brown font-extrabold text-sm uppercase tracking-widest cursor-default select-none">Tim Pengembang</h3>
         <ul class="flex flex-col gap-1">
           <li class="flex items-center gap-2 text-sm text-gray-600 cursor-default select-none">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>Dwiki Aulia Rahman
+            <span class="w-1.5 h-1.5 rounded-full bg-brown inline-block"></span>Dwiki Aulia Rahman
           </li>
           <li class="flex items-center gap-2 text-sm text-gray-600 cursor-default select-none">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>Zaki Wira Laksamana
+            <span class="w-1.5 h-1.5 rounded-full bg-brown inline-block"></span>Zaki Wira Laksamana
           </li>
           <li class="flex items-center gap-2 text-sm text-gray-600 cursor-default select-none">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#aa6d11] inline-block"></span>Hafid Fathurrohman
+            <span class="w-1.5 h-1.5 rounded-full bg-brown inline-block"></span>Hafid Fathurrohman
           </li>
         </ul>
       </div>
 
       <div class="flex flex-col gap-3">
-        <h3 class="text-[#aa6d11] font-extrabold text-sm uppercase tracking-widest cursor-default select-none">Dosen Pembimbing</h3>
+        <h3 class="text-brown font-extrabold text-sm uppercase tracking-widest cursor-default select-none">Dosen Pembimbing</h3>
         <p class="text-sm text-gray-600 leading-relaxed cursor-default select-none">Bu Reisa Permatasari, ST, M.Kom.</p>
         <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest mt-1 cursor-default select-none">
           Pemrograman Website &amp; Manajemen Proyek Sistem Informasi · 2026
@@ -163,7 +168,7 @@
       </div>
 
     </div>
-    <div class="border-t border-[#e8d5b0] bg-[#f5ede0]">
+    <div class="border-t border-brown-border bg-brown-surface">
       <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
         <p class="text-xs text-gray-400 font-semibold cursor-default select-none">&copy; 2026 AksaraLoka — Kelompok 11</p>
       </div>
