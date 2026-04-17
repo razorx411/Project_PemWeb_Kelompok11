@@ -101,24 +101,19 @@
     Semua
   </button>
 
-  <button onclick="filterMateri(event, 'aksara')" 
+  <button onclick="filterMateri(event, 'dasar')" 
     class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
-    Aksara
+    Dasar
   </button>
 
-  <button onclick="filterMateri(event, 'bahasa')" 
+  <button onclick="filterMateri(event, 'menengah')" 
     class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
-    Bahasa
+    Menengah
   </button>
 
-  <button onclick="filterMateri(event, 'kosakata')" 
+  <button onclick="filterMateri(event, 'lanjutan')" 
     class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
-    Kosakata
-  </button>
-
-  <button onclick="filterMateri(event, 'cerita')" 
-    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
-    Cerita
+    Lanjutan
   </button>
 </div>
 
@@ -126,8 +121,8 @@
 <div class="grid md:grid-cols-2 gap-5">
 
   <!-- AKSARA -->
-  <a href="materi-aksara.html" 
-     class="materi aksara block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+  <a href="materi-aksara.html" id="card-materi-aksara"
+     class="materi dasar block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
     <div class="flex justify-between">
       <h2 class="font-black text-sm">Aksara Jawa</h2>
       <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
@@ -136,8 +131,8 @@
   </a>
 
   <!-- NGOKO -->
-  <a href="materi-ngoko.html" 
-     class="materi bahasa block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+  <a href="materi-ngoko.html" id="card-materi-ngoko"
+     class="materi dasar block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
     <div class="flex justify-between">
       <h2 class="font-black text-sm">Bahasa Ngoko</h2>
       <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
@@ -146,21 +141,21 @@
   </a>
 
   <!-- KRAMA -->
-  <a href="materi-krama.html" 
-     class="materi bahasa block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+  <a href="materi-krama.html" id="card-materi-krama"
+     class="materi menengah block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
     <div class="flex justify-between">
       <h2 class="font-black text-sm">Krama Alus</h2>
-      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Sopan</span>
+      <span class="text-xs bg-orange-100 text-brand px-2 py-1 rounded-full border border-orange-200 font-bold">Menengah</span>
     </div>
     <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa menghormati</p>
   </a>
 
   <!-- KOSAKATA -->
-  <a href="kosakata.html" 
-     class="materi kosakata block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+  <a href="kosakata.html" id="card-kosakata"
+     class="materi menengah block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
     <div class="flex justify-between">
       <h2 class="font-black text-sm">Kosakata & Percakapan</h2>
-      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Kreatif</span>
+      <span class="text-xs bg-orange-100 text-brand px-2 py-1 rounded-full border border-orange-200 font-bold">Menengah</span>
     </div>
     <p class="text-xs text-gray-500 mt-2 font-semibold">
       Salam, perkenalan, dan percakapan sehari-hari
@@ -168,11 +163,11 @@
   </a>
 
   <!-- CERITA -->
-  <a href="materi-cerita.html" 
-     class="materi cerita block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+  <a href="materi-cerita.html" id="card-materi-cerita"
+     class="materi lanjutan block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
     <div class="flex justify-between">
       <h2 class="font-black text-sm">Cerita Jawa</h2>
-      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Literasi</span>
+      <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full border border-red-200 font-bold">Lanjutan</span>
     </div>
     <p class="text-xs text-gray-500 mt-2 font-semibold">
       Cerita rakyat & pemahaman teks
@@ -253,6 +248,33 @@ function closeModal(){
   modal.classList.add('hidden');
   modal.classList.remove('flex');
 }
+
+// 📌 TANDA MATERI SELESAI
+document.addEventListener('DOMContentLoaded', () => {
+  const materiList = [
+    'materi-aksara', 'materi-ngoko', 'materi-krama', 'kosakata', 'materi-cerita'
+  ];
+
+  materiList.forEach(materiId => {
+    if (localStorage.getItem('selesai_' + materiId) === 'true') {
+      const card = document.getElementById('card-' + materiId);
+      if (card) {
+        // Ganti style jadi "selesai" (hijau)
+        card.classList.remove('bg-white', 'border-brand-border');
+        card.classList.add('bg-green-50', 'border-green-400');
+        
+        // Ganti tag/span terakhir untuk tambahkan centang Selesai
+        const titleContainer = card.querySelector('.flex.justify-between');
+        const badgeSelesai = document.createElement('span');
+        badgeSelesai.className = 'text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full border border-green-300 font-bold flex items-center gap-1';
+        badgeSelesai.innerHTML = '✓ Selesai';
+        
+        // Tambahkan badge Selesai di sebelah tag kategori
+        titleContainer.appendChild(badgeSelesai);
+      }
+    }
+  });
+});
 </script>
 
 </body>
