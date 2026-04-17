@@ -155,7 +155,7 @@ form.addEventListener('submit', async (e) => {
 
       // Redirect ke halaman login setelah 2 detik
       setTimeout(() => {
-        window.location.href = 'home-page.html';
+        window.location.href = 'login-page.html';
       }, 2000);
 
     } else if (data.errors) {
